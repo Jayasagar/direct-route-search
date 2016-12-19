@@ -31,8 +31,9 @@ dependencies {
 
     compile("org.springframework.boot:spring-boot-starter-actuator")
 
-    // Extras , Lombok
+    // Extras
     compileOnly "org.projectlombok:lombok:1.16.10"
+    compile group: 'com.google.guava', name: 'guava', version: '11.0.2'
     compile("com.fasterxml.jackson.datatype:jackson-datatype-joda")
 
     // Tests
