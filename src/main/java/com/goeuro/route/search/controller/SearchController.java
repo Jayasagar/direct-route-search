@@ -11,15 +11,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.goeuro.route.search.RequestMappingURI.BASE_URL;
+import static com.goeuro.route.search.RequestMappingURI.DIRECT_MAPPING;
+
 @RestController
-@RequestMapping(RequestMappingURI.BASE_URL)
+@RequestMapping(BASE_URL)
 @Description("Search route endpoint")
 public class SearchController {
 
     @Autowired
     private RouteSearchService routeSearchService;
 
-    @RequestMapping(value = "direct", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = DIRECT_MAPPING, method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public SearchResponse isDirectRouteExist(@RequestParam int dep_sid, @RequestParam int arr_sid) {
         return routeSearchService.isRouteExist(dep_sid, arr_sid);
     }

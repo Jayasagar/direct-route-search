@@ -1,20 +1,17 @@
 package com.goeuro.route.search;
 
-import com.goeuro.route.search.boot.DataLoaderService;
+import com.goeuro.route.search.boot.BootDataService;
 import com.goeuro.route.search.exceptions.DataLoadStateException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
+
+import static com.goeuro.route.search.Constants.LOG_APP_TAG;
 
 @SpringBootApplication
 public class Application {
@@ -24,19 +21,21 @@ public class Application {
 
         //String dataFilePath = "/Users/jayasagar/Dev/gl/assignments/ge-bus-route-search-service/sample-data.txt";
         // Load data and represent to serve the request
-        if (args != null && args.length>0) {
-            String dataFilePath = args[0];
+        try {
+            if (args != null && args.length > 0) {
+                String dataFilePath = args[0];
+                Stream<String> dataStream = Files.lines(Paths.get(dataFilePath));
 
-            try (Stream<String> dataStream = Files.lines(Paths.get(dataFilePath))) {
-                DataLoaderService dataLoaderService = applicationContext.getBean(DataLoaderService.class);
-                dataLoaderService.loadData(dataStream);
-            } catch (IOException e) {
-                Logger.getLogger("Direct Route Search").severe(() -> "Please check your data input file path");
+                // delegate to data loader service
+                BootDataService bootDataService = applicationContext.getBean(BootDataService.class);
+                bootDataService.loadData(dataStream);
+            } else {
+                Logger.getLogger(LOG_APP_TAG).severe(() -> "Please check your data input file path");
+                throw new DataLoadStateException("Please check your data input file path");
             }
-        } else {
-            throw new DataLoadStateException();
+        } catch (Exception e) {
+            Logger.getLogger(LOG_APP_TAG).severe(() -> e.getMessage());
+            System.exit(0);
         }
-
-
     }
 }

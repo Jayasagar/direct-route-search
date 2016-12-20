@@ -7,6 +7,9 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import java.util.Set;
+import java.util.logging.Logger;
+
+import static com.goeuro.route.search.Constants.LOG_APP_TAG;
 
 @EqualsAndHashCode(of = {"id"}) @ToString
 public final class Route {
@@ -22,14 +25,14 @@ public final class Route {
     }
 
     public static Route of(String id) {
-       return of(Integer.parseInt(id));
+       return of(Integer.parseInt(id.trim()));
     }
 
     public static Route of(int id) {
         // Same Route being added again
         if (ApplicationData.allRoutes.containsKey(id)) {
-            // TODO: log and add message
-            throw new DataLoadStateException();
+            Logger.getLogger(LOG_APP_TAG).severe(() -> String.format("Duplicate Route %d", id));
+            throw new DataLoadStateException(String.format("Duplicate Route %d", id));
         }
         Route route = new Route(id);
         ApplicationData.allRoutes.put(id, route);
@@ -39,8 +42,8 @@ public final class Route {
     public void addStop(Stop stop) {
         boolean isAdded = stops.add(stop);
         if (!isAdded) { // Same stop being added again
-            // TODO: log and add message
-            throw new DataLoadStateException();
+            Logger.getLogger(LOG_APP_TAG).severe(() -> String.format("Duplicate stop %d in route %d", stop, id));
+            throw new DataLoadStateException(String.format("Duplicate stop %d in route %d", stop, id));
         }
     }
 

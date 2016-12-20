@@ -13,7 +13,7 @@ public final class Stop {
     }
 
     public static Stop of(String id) {
-        return of(Integer.parseInt(id));
+        return of(Integer.parseInt(id.trim()));
     }
 
     public static Stop of(int id) {

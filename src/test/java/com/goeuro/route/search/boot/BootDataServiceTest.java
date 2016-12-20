@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-public class DataLoaderServiceTest {
+public class BootDataServiceTest {
 
     @BeforeClass
     public static void setup() {
@@ -24,10 +24,10 @@ public class DataLoaderServiceTest {
                 "2 0 6 4"
         };
 
-        DataLoaderService dataLoaderService = new DataLoaderService();
+        BootDataService bootDataService = new BootDataService();
 
         // Act
-        dataLoaderService.loadData(Arrays.asList(data).stream());
+        bootDataService.loadData(Arrays.asList(data).stream());
 
         // Assert
         Assert.assertEquals(ApplicationData.allRoutes.size(), 3);

@@ -1,5 +1,6 @@
 package com.goeuro.route.search;
 
 public interface RequestMappingURI {
-    public static String BASE_URL = "/api";
+    String BASE_URL = "/api";
+    String DIRECT_MAPPING = "direct";
 }

@@ -1,7 +1,19 @@
 ##### Run commands:
- ./gradlew build
+ ./gradlew clean build
 java -jar ./build/libs/direct-search-route-1.0.jar /Users/jayasagar/Dev/gl/assignments/ge-bus-route-search-service/sample-data.txt
 ./service.sh start /Users/jayasagar/Dev/gl/assignments/ge-bus-route-search-service/sample-data.txt
+
+###### Solution approach taken points
+* First thing I want to avoid duplicate stop(stations) object. Using two model object Route and Stop and they are immutable 
+* On application booting, loads the data from file into the Application Data
+** Validates the Data, if not exit from application
+* 
+
+###### Things to improve
+* More unit tests 
+* Effective streams!
+* Spring Cache on Service method so that we can improve performance
+* 
 
 ###### Bus Route Data
 — 1st Line: Num of lines
@@ -45,15 +57,15 @@ java -jar ./build/libs/direct-search-route-1.0.jar /Users/jayasagar/Dev/gl/assig
 — Test driven development
 — 
 
-###### Logic/Flow
-— map.values().stream().flatMap(list<Stations> -> list.stream()).filter(contains(dep_is) && contains(ar_id)).limit(1).
+###### Logic/Flow: quick
+— map.values().stream().map(list<Stations> -> list.stream()).filter(contains(dep_is) && contains(ar_id)).limit(1).
 
 ###### Test Cases:
 — Validate first line only contains 1 integer else throw Invalid Data File Exception
 — Validate at least 3 integers else throw Invalid Data File Exception
 — Validate Route Id is not repeated across the file else throw Invalid Data File Exception
 — Validate Station Id is not repeated Within the route else throw Invalid Data File Exception
-— Max bus routes should be x, else 
+— Given user inputs should match in order: order matters
 — 
 
 ###### Keep in mind

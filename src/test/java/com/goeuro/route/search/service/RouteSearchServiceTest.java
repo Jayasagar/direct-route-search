@@ -1,6 +1,6 @@
 package com.goeuro.route.search.service;
 
-import com.goeuro.route.search.boot.DataLoaderService;
+import com.goeuro.route.search.boot.BootDataService;
 import com.goeuro.route.search.data.ApplicationData;
 import com.goeuro.route.search.model.SearchResponse;
 import org.junit.Assert;
@@ -21,8 +21,8 @@ public class RouteSearchServiceTest {
                 "1 3 1 6 5",
                 "2 0 6 4"
         };
-        DataLoaderService dataLoaderService = new DataLoaderService();
-        dataLoaderService.loadData(Arrays.asList(data).stream());
+        BootDataService bootDataService = new BootDataService();
+        bootDataService.loadData(Arrays.asList(data).stream());
     }
 
     @Test
