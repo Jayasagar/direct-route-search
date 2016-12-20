@@ -14,11 +14,7 @@ public class RouteSearchServiceTest {
     @BeforeClass
     public static void setup() {
         ApplicationData.clearData();
-    }
 
-    @Test
-    public void given_input_should_return_route_exist_true() {
-        // Arrange
         String data[] = new String[] {
                 "3",
                 "0 0 1 2 3 4",
@@ -27,13 +23,30 @@ public class RouteSearchServiceTest {
         };
         DataLoaderService dataLoaderService = new DataLoaderService();
         dataLoaderService.loadData(Arrays.asList(data).stream());
+    }
 
+
+    @Test
+    public void given_input_should_return_route_exist_true() {
+        // Arrange
         RouteSearchService routeSearchService = new RouteSearchService();
 
         // Act
-        SearchResponse routeExist = routeSearchService.isRouteExist(3, 6);
+        SearchResponse routeExist = routeSearchService.isRouteExist(0, 4);
 
         // Assert
         Assert.assertTrue(routeExist.isDirect_bus_route());
+    }
+
+    @Test
+    public void given_input_should_return_route_exist_false() {
+        // Arrange
+        RouteSearchService routeSearchService = new RouteSearchService();
+
+        // Act
+        SearchResponse routeExist = routeSearchService.isRouteExist(0, 5);
+
+        // Assert
+        Assert.assertFalse(routeExist.isDirect_bus_route());
     }
 }

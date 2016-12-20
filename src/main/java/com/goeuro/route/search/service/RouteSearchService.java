@@ -15,9 +15,7 @@ public class RouteSearchService {
                 .values()
                 .stream()
                 .map(route -> route.getStops())
-                .filter(stops -> {
-                    return stops.contains(Stop.of(dep_sid)) && stops.contains(Stop.of(arr_sid));
-                })
+                .filter(stops -> stops.contains(Stop.of(dep_sid)) && stops.contains(Stop.of(arr_sid)))
                 .findAny()
                 .isPresent();
 
