@@ -1,10 +1,17 @@
 package com.goeuro.route.search.model;
 
+import com.goeuro.route.search.Application;
 import com.goeuro.route.search.data.ApplicationData;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class StopTest {
+
+    @BeforeClass
+    public static void setup() {
+        ApplicationData.clearData();
+    }
 
     @Test
     public void create_a_stop_should_add_to_all_stops() {

@@ -12,7 +12,7 @@ apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
 jar {
-    baseName = 'audiologist-spring-boot'
+    baseName = 'direct-search-route'
     version =  '1.0'
 }
 

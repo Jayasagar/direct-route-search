@@ -6,7 +6,14 @@ import com.google.common.collect.Maps;
 
 import java.util.Map;
 
-public class ApplicationData {
+public final class ApplicationData {
+    private ApplicationData() {}
+
     public static Map<Integer, Route> allRoutes = Maps.newHashMap();
     public static Map<Integer, Stop> allStops = Maps.newHashMap();
+
+    public static void clearData() {
+        allRoutes.clear();
+        allStops.clear();
+    }
 }

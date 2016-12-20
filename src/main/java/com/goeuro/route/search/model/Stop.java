@@ -12,6 +12,10 @@ public final class Stop {
         this.id = id;
     }
 
+    public static Stop of(String id) {
+        return of(Integer.parseInt(id));
+    }
+
     public static Stop of(int id) {
         if (!ApplicationData.allStops.containsKey(id)) {
             Stop stop = new Stop(id);

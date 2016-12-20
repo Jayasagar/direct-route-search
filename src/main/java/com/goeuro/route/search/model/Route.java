@@ -20,6 +20,10 @@ public final class Route {
         this.id = id;
     }
 
+    public static Route of(String id) {
+       return of(Integer.parseInt(id));
+    }
+
     public static Route of(int id) {
         if (ApplicationData.allRoutes.containsKey(id)) {
             // Throw exception
