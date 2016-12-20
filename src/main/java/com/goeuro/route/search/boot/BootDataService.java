@@ -24,7 +24,6 @@ public class BootDataService {
         Optional<String> numberOfRoutes = dataAsCollection.stream().findFirst();
 
         int totalRoutes = -1;
-        // Handle exception
         try {
             totalRoutes = Integer.parseInt(numberOfRoutes.orElseThrow(() -> new DataLoadStateException("Provide valid total number of routes")).trim());
         } catch (Exception e) {
