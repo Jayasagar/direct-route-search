@@ -3,6 +3,7 @@ package com.goeuro.route.search.model;
 import com.goeuro.route.search.Application;
 import com.goeuro.route.search.data.ApplicationData;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -10,6 +11,11 @@ public class StopTest {
 
     @BeforeClass
     public static void setup() {
+        ApplicationData.clearData();
+    }
+
+    @Before
+    public void unitSetup() {
         ApplicationData.clearData();
     }
 

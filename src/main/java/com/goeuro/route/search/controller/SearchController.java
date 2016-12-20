@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(RequestMappingURI.BASE_URL)
-@Description("A controller for handling requests for Patient")
+@Description("Search route endpoint")
 public class SearchController {
 
     @Autowired
     private RouteSearchService routeSearchService;
 
     @RequestMapping(value = "direct", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public SearchResponse getNextAppointment(@RequestParam int dep_sid, @RequestParam int arr_sid) {
+    public SearchResponse isDirectRouteExist(@RequestParam int dep_sid, @RequestParam int arr_sid) {
         return routeSearchService.isRouteExist(dep_sid, arr_sid);
     }
 }

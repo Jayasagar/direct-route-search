@@ -1,3 +1,8 @@
+##### Run commands:
+ ./gradlew build
+java -jar ./build/libs/direct-search-route-1.0.jar /Users/jayasagar/Dev/gl/assignments/ge-bus-route-search-service/sample-data.txt
+./service.sh start /Users/jayasagar/Dev/gl/assignments/ge-bus-route-search-service/sample-data.txt
+
 ###### Bus Route Data
 — 1st Line: Num of lines
 — Rest of the lines are routes

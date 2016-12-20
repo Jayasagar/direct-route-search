@@ -6,10 +6,13 @@ import com.goeuro.route.search.model.Stop;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.logging.Logger;
+
 @Service
 public class RouteSearchService {
 
     public SearchResponse isRouteExist(int dep_sid, int arr_sid ) {
+
 
         boolean directRouteExist = ApplicationData.allRoutes
                 .values()

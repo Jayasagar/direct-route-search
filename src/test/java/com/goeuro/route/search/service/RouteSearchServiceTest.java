@@ -25,7 +25,6 @@ public class RouteSearchServiceTest {
         dataLoaderService.loadData(Arrays.asList(data).stream());
     }
 
-
     @Test
     public void given_input_should_return_route_exist_true() {
         // Arrange

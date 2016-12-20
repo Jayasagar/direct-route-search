@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -55,6 +56,8 @@ public class DataLoaderService {
             // TODO: log and add message
             throw new DataLoadStateException();
         }
+
+        Logger.getLogger("Direct Search Route").info(() -> "data:" + ApplicationData.allRoutes);
 
     }
 }

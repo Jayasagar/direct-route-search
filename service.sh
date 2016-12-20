@@ -14,7 +14,7 @@ LOGFILE=/tmp/$NAME.log
 start() {
     if [ -f $PIDFILE ]; then
         if kill -0 $(cat $PIDFILE); then
-            echo 'Service already running' >&2
+            echo "Service already running" >&2
             return 1
         else
             rm -f $PIDFILE
@@ -26,7 +26,7 @@ start() {
 
 stop() {
     if [ ! -f $PIDFILE ] || ! kill -0 $(cat $PIDFILE); then
-        echo 'Service not running' >&2
+        echo "Service not running" >&2
         return 1
     fi
     kill -15 $(cat $PIDFILE) && rm -f $PIDFILE
