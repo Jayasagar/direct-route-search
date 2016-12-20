@@ -45,7 +45,7 @@
 
 ###### Test Cases:
 — Validate first line only contains 1 integer else throw Invalid Data File Exception
-— Validate atleast 3 integers else throw Invalid Data File Exception
+— Validate at least 3 integers else throw Invalid Data File Exception
 — Validate Route Id is not repeated across the file else throw Invalid Data File Exception
 — Validate Station Id is not repeated Within the route else throw Invalid Data File Exception
 — Max bus routes should be x, else 

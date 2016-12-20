@@ -12,6 +12,10 @@ public final class Route {
     private final int id;
     private Set<Stop> stops = Sets.newHashSet();
 
+    public Set<Stop> getStops() {
+        return stops;
+    }
+
     private Route(int id) {
         this.id = id;
     }
