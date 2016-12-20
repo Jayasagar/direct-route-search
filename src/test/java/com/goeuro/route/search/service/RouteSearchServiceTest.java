@@ -38,6 +38,18 @@ public class RouteSearchServiceTest {
     }
 
     @Test
+    public void reverse_direction_should_return_route_exist_false() {
+        // Arrange
+        RouteSearchService routeSearchService = new RouteSearchService();
+
+        // Act
+        SearchResponse routeExist = routeSearchService.isRouteExist(4, 0);
+
+        // Assert
+        Assert.assertFalse(routeExist.isDirect_bus_route());
+    }
+
+    @Test
     public void given_input_should_return_route_exist_false() {
         // Arrange
         RouteSearchService routeSearchService = new RouteSearchService();

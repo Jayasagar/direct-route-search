@@ -11,7 +11,7 @@ import java.util.Set;
 @EqualsAndHashCode(of = {"id"}) @ToString
 public final class Route {
     private final int id;
-    private Set<Stop> stops = Sets.newHashSet();
+    private Set<Stop> stops = Sets.newLinkedHashSet();
 
     public Set<Stop> getStops() {
         return stops;
