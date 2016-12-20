@@ -1,6 +1,7 @@
 package com.goeuro.route.search.model;
 
 import com.goeuro.route.search.data.ApplicationData;
+import com.goeuro.route.search.exceptions.DataLoadStateException;
 import com.google.common.collect.Sets;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -25,8 +26,10 @@ public final class Route {
     }
 
     public static Route of(int id) {
+        // Same Route being added again
         if (ApplicationData.allRoutes.containsKey(id)) {
-            // Throw exception
+            // TODO: log and add message
+            throw new DataLoadStateException();
         }
         Route route = new Route(id);
         ApplicationData.allRoutes.put(id, route);
@@ -35,8 +38,9 @@ public final class Route {
 
     public void addStop(Stop stop) {
         boolean isAdded = stops.add(stop);
-        if (!isAdded) {
-            // throw exception
+        if (!isAdded) { // Same stop being added again
+            // TODO: log and add message
+            throw new DataLoadStateException();
         }
     }
 

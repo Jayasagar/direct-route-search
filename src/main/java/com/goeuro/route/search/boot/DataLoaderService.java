@@ -7,18 +7,30 @@ import com.goeuro.route.search.model.Stop;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
 public class DataLoaderService {
-    public void loadData(Stream<String> dataStream) throws DataLoadStateException {
+    public void loadData(Stream<String> dataStream) {
 
-        Optional<String> numberOfRoutes = dataStream.findFirst();
-        int totalRoutes = Integer.parseInt(numberOfRoutes.orElseThrow(() -> new DataLoadStateException()));
+        List<String> dataAsCollection = dataStream.collect(Collectors.toList());
 
-        dataStream
+        Optional<String> numberOfRoutes = dataAsCollection.stream().findFirst();
+
+        int totalRoutes = -1;
+        // Handle exception
+        try {
+            totalRoutes = Integer.parseInt(numberOfRoutes.orElseThrow(() -> new DataLoadStateException()).trim());
+        }catch (Exception e) {
+            // TODO: log and add message
+            throw new DataLoadStateException();
+        }
+
+        dataAsCollection
+                .stream()
                 .skip(1)
                 // process each Route
                 .forEach(line -> {

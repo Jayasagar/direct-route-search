@@ -2,6 +2,7 @@ package com.goeuro.route.search.service;
 
 import com.goeuro.route.search.data.ApplicationData;
 import com.goeuro.route.search.model.SearchResponse;
+import com.goeuro.route.search.model.Stop;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -14,7 +15,11 @@ public class RouteSearchService {
                 .values()
                 .stream()
                 .map(route -> route.getStops())
-                .allMatch(stops -> stops.contains(dep_sid) && stops.contains(arr_sid));
+                .filter(stops -> {
+                    return stops.contains(Stop.of(dep_sid)) && stops.contains(Stop.of(arr_sid));
+                })
+                .findAny()
+                .isPresent();
 
         SearchResponse searchResponse = new SearchResponse();
         searchResponse.setArr_sid(arr_sid);
